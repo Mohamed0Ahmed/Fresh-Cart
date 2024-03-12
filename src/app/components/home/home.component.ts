@@ -67,7 +67,6 @@ export class HomeComponent implements OnInit {
       let decodeToken = jwtDecode(encodeToken);
       this.Dataaa = decodeToken;
       console.log(this.Dataaa);
-      localStorage.setItem(`${this.Dataaa.id} name `, this.Dataaa.name);
     }
   }
 
