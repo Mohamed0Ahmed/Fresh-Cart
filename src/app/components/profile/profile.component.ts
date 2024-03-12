@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   Dataaa: any;
   userName: string = '';
   userEmail: any;
+  userId: string = '';
 
   //*
 
@@ -33,7 +34,9 @@ export class ProfileComponent implements OnInit {
       let encodeToken: any = localStorage.getItem('eToken');
       let decodeToken = jwtDecode(encodeToken);
       this.Dataaa = decodeToken;
-      this.userName = this.Dataaa.name;
+      this.userId = this.Dataaa.id;
+
+      this.userName = localStorage.getItem(`${this.userId} name `)!;
       this.userEmail = localStorage.getItem('mail');
 
       console.log(this.Dataaa.id);

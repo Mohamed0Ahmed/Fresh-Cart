@@ -60,7 +60,6 @@ export class SettingComponent {
       let encodeToken: any = localStorage.getItem('eToken');
       let decodeToken = jwtDecode(encodeToken);
       this.Dataaa = decodeToken;
-      this.userName = this.Dataaa.name;
       this.userId = this.Dataaa.id;
       this.userEmail = localStorage.getItem('mail')!;
       this.userPass = localStorage.getItem('pass')!;
@@ -77,6 +76,7 @@ export class SettingComponent {
     this.userAge = localStorage.getItem(`${this.userId} age `)!;
     this.age = localStorage.getItem(`${this.userId} age `)!;
     this.userPhone = localStorage.getItem(`${this.userId} phone `)!;
+    this.userName = localStorage.getItem(`${this.userId} name `)!;
 
     //* Get addresss
     this._UserService.getAddresss().subscribe({
@@ -110,9 +110,10 @@ export class SettingComponent {
         this.userEmail = response.user.email;
         this.userPhone = this.registerForm.value.phone;
         localStorage.setItem(`${this.userId} phone `, this.userPhone);
+        localStorage.setItem(`mail`, this.userEmail);
+        localStorage.setItem(`${this.userId} name `, this.userName);
         this.updatInfo = 'Update Info Successfull';
         console.log(response);
-        
       },
       error: (err) => {
         this.errMsg = err.error.errors.msg;

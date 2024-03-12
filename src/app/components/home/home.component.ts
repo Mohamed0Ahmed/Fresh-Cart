@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
 import { product } from 'src/app/shared/interfaces/product';
 import { CartService } from 'src/app/shared/services/cart.service';
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
   show: string = 'All Products';
   onSale: boolean = true;
   layout: number = 4;
+  Dataaa: any;
   //* show Stars
   generateRatingArray(ratingAverage: number): any[] {
     return Array.from({ length: ratingAverage }, (star, index) => index);
@@ -58,6 +60,15 @@ export class HomeComponent implements OnInit {
         this.wishlistData = data;
       },
     });
+
+    //* ### GEt token
+    if (localStorage.getItem('eToken')) {
+      let encodeToken: any = localStorage.getItem('eToken');
+      let decodeToken = jwtDecode(encodeToken);
+      this.Dataaa = decodeToken;
+      console.log(this.Dataaa);
+      localStorage.setItem(`${this.Dataaa.id} name `, this.Dataaa.name);
+    }
   }
 
   //* ### add to cart
