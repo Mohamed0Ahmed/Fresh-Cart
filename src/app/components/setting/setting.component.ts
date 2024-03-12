@@ -63,6 +63,7 @@ export class SettingComponent {
       this.userId = this.Dataaa.id;
       this.userEmail = localStorage.getItem('mail')!;
       this.userPass = localStorage.getItem('pass')!;
+      this.userName = this.Dataaa.name;
     }
 
     //* ### get pic
